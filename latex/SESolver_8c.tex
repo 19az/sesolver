@@ -1,0 +1,65 @@
+\hypertarget{SESolver_8c}{}\doxysection{SESolver.\+c File Reference}
+\label{SESolver_8c}\index{SESolver.c@{SESolver.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}SESolver.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{SESolver_8c_a2f60bba9a49acf5cb0b71341c64f5bcb}{se\+\_\+solve}} (double a, double b, double c, double $\ast$root1, double $\ast$root2)
+\begin{DoxyCompactList}\small\item\em Solves square equation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{SESolver_8c_a437de66f7e5cef0e168cae421c2a1501}{is\+\_\+equal}} (double a, double b)
+\begin{DoxyCompactList}\small\item\em Checks if two double numbers are equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{SESolver_8c_a437de66f7e5cef0e168cae421c2a1501}\label{SESolver_8c_a437de66f7e5cef0e168cae421c2a1501}} 
+\index{SESolver.c@{SESolver.c}!is\_equal@{is\_equal}}
+\index{is\_equal@{is\_equal}!SESolver.c@{SESolver.c}}
+\doxysubsubsection{\texorpdfstring{is\_equal()}{is\_equal()}}
+{\footnotesize\ttfamily int is\+\_\+equal (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b }\end{DoxyParamCaption})}
+
+
+
+Checks if two double numbers are equal. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & 1st double number \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & 2nd double number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if equal and 0 otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+uses EPS as valid precision 
+\end{DoxyNote}
+\mbox{\Hypertarget{SESolver_8c_a2f60bba9a49acf5cb0b71341c64f5bcb}\label{SESolver_8c_a2f60bba9a49acf5cb0b71341c64f5bcb}} 
+\index{SESolver.c@{SESolver.c}!se\_solve@{se\_solve}}
+\index{se\_solve@{se\_solve}!SESolver.c@{SESolver.c}}
+\doxysubsubsection{\texorpdfstring{se\_solve()}{se\_solve()}}
+{\footnotesize\ttfamily int se\+\_\+solve (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double $\ast$}]{root1,  }\item[{double $\ast$}]{root2 }\end{DoxyParamCaption})}
+
+
+
+Solves square equation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & 1st coef \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & 2nd coef \\
+\hline
+\mbox{\texttt{ in}}  & {\em c} & 3rd coef \\
+\hline
+\mbox{\texttt{ out}}  & {\em root1} & pointer to the 1st root \\
+\hline
+\mbox{\texttt{ out}}  & {\em root2} & pointer to the 2nd root\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of roots of equation 
+\end{DoxyReturn}
