@@ -4,14 +4,11 @@
 #include "SESolver.h"
 #include "SESolverUT.h"
 
-const int UT = 1;
-
 int main() {
+#ifdef UT
+    se_solve_ut();
+#endif
     printf("Square equation solver\n");
-
-    if (UT) {
-        se_solve_ut();
-    }
 
     double a = 0;
     double b = 0;
