@@ -7,7 +7,7 @@
 #include "SESolver.h"
 
 void se_solve_ut() {
-    printf("Unit test for se_solve()\n");
+    printf("\nUnit test for se_solve()\n");
 
     const int nTests = 14;
                              //    a         b              c   nr   r1   r2
@@ -72,7 +72,7 @@ void se_solve_ut() {
         }
     }
     unit_test_report(results, nTests);
-    printf("Unit test is over\n");
+    printf("Unit test is over\n\n");
 }
 
 void unit_test_report(int *tests, int nTests) {
