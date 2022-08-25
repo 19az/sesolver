@@ -1,5 +1,15 @@
 /// @file SESolverUT.c
 
+#define RED(x)             \
+printf("\033[1;31m");      \
+x                          \
+printf("\033[0m");         
+              
+#define GREEN(x)           \
+printf("\033[0;32m");      \
+x                          \
+printf("\033[0m");         
+
 #include <math.h>
 #include <stdio.h>
 
@@ -48,9 +58,9 @@ void se_solve_ut() {
         }
         results[i] = result;
         if (result) {
-            printf("OK\n");
+            GREEN(printf("OK\n");)
         } else {
-            printf("FAILED\n");
+            RED(printf("FAILED\n");)
             printf("a           = %lg\n"
                    "b           = %lg\n"
                    "c           = %lg\n"
@@ -103,9 +113,9 @@ void le_solve_ut() {
         }
         results[i] = result;
         if (result) {
-            printf("OK\n");
+            GREEN(printf("OK\n");)
         } else {
-            printf("FAILED\n");
+            RED(printf("FAILED\n");)
             printf("a           = %lg\n"
                    "b           = %lg\n"
                    "nRoots(exp) = %lg\n"
@@ -126,10 +136,10 @@ void le_solve_ut() {
 
 
 void unit_test_report(int *tests, int nTests) {
-    printf("Failed tests numbers: ");
+    RED(printf("Failed tests numbers: ");)
     for (int i = 0; i < nTests; ++i) {
         if (!tests[i]) {
-            printf("%d ", i);
+            RED(printf("%d ", i);)
         }
     }
     printf("\n");
