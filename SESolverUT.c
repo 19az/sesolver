@@ -28,8 +28,8 @@ void se_solve_ut() {
                               };
 
     int results[nTests] = {};
-    double root1 = 0;
-    double root2 = 0;
+    double root1 = NAN;
+    double root2 = NAN;
     for (int i = 0; i < nTests; ++i) {
         printf("Test # %d ... ", i);
 
@@ -74,6 +74,56 @@ void se_solve_ut() {
     unit_test_report(results, nTests);
     printf("Unit test is over\n\n");
 }
+
+void le_solve_ut() {
+    printf("\nUnit test for le_solve()\n");
+
+    const int nTests = 4;
+                             // a  b   nr   r
+    double tests[nTests][4] = {{0, 0, INF,  0}, // 0
+                               {0, 1,   0,  0}, // 1
+                               {1, 0,   1,  0}, // 2
+                               {1, 1,   1, -1}, // 3
+                              };
+
+    int results[nTests] = {};
+    double root = NAN;
+    for (int i = 0; i < nTests; ++i) {
+        printf("Test # %d ... ", i);
+
+        root = 0;
+        int nRoots = le_solve(tests[i][0], tests[i][1], &root);
+        int result = 1;
+        if (nRoots == tests[i][2]) {
+            if (nRoots == 1) {
+                result = (is_equal(root, tests[i][3]));
+            }
+        } else {
+            result = 0;
+        }
+        results[i] = result;
+        if (result) {
+            printf("OK\n");
+        } else {
+            printf("FAILED\n");
+            printf("a           = %lg\n"
+                   "b           = %lg\n"
+                   "nRoots(exp) = %lg\n"
+                   "root(exp)  = %lg\n"
+                   "nRoots(res) = %lg\n"
+                   "root(res)  = %lg\n",
+                   tests[i][0],
+                   tests[i][1],
+                   tests[i][2],
+                   tests[i][3],
+                   nRoots,
+                   root);
+        }
+    }
+    unit_test_report(results, nTests);
+    printf("Unit test is over\n\n");
+}
+
 
 void unit_test_report(int *tests, int nTests) {
     printf("Failed tests numbers: ");

@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <math.h>
 
@@ -5,23 +6,29 @@
 #include "SESolverUT.h"
 
 int main() {
-#ifdef UT
+#ifdef SEUT
     se_solve_ut();
+#endif
+#ifdef LEUT
+    le_solve_ut();
 #endif
     printf("Square equation solver\n");
 
-    double a = 0;
-    double b = 0;
-    double c = 0;
+    double a = NAN;
+    double b = NAN;
+    double c = NAN;
     printf("Enter coefficients of equation: a b c\n");
     while (scanf("%lg %lg %lg", &a, &b, &c) != 3) {
         printf("Error. Wrong type of data\n");
-        while (getchar() != '\n');
+        int ch = 0;
+        while ((ch = getchar()) != '\n') {
+            assert(("EOF is read", ch != -1));
+        }
         printf("Try again:\n");
     }
 
-    double root1 = 0;
-    double root2 = 0;
+    double root1 = NAN;
+    double root2 = NAN;
     int nRoots = se_solve(a, b, c, &root1, &root2);
 
     switch(nRoots) {

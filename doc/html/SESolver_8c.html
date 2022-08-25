@@ -80,6 +80,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a437de66f7e5cef0e168cae421c2a1501"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SESolver_8c.html#a437de66f7e5cef0e168cae421c2a1501">is_equal</a> (double a, double b)</td></tr>
 <tr class="memdesc:a437de66f7e5cef0e168cae421c2a1501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two double numbers are equal.  <a href="SESolver_8c.html#a437de66f7e5cef0e168cae421c2a1501">More...</a><br /></td></tr>
 <tr class="separator:a437de66f7e5cef0e168cae421c2a1501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a682fe5f8505e8a50acb3c7cc459f9138"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SESolver_8c.html#a682fe5f8505e8a50acb3c7cc459f9138">swap</a> (double *a, double *b)</td></tr>
+<tr class="memdesc:a682fe5f8505e8a50acb3c7cc459f9138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps two double numbers.  <a href="SESolver_8c.html#a682fe5f8505e8a50acb3c7cc459f9138">More...</a><br /></td></tr>
+<tr class="separator:a682fe5f8505e8a50acb3c7cc459f9138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade17720162668f2ff87eadf07de01194"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SESolver_8c.html#ade17720162668f2ff87eadf07de01194">le_solve</a> (double a, double b, double *root)</td></tr>
+<tr class="memdesc:ade17720162668f2ff87eadf07de01194"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solves linear equation.  <a href="SESolver_8c.html#ade17720162668f2ff87eadf07de01194">More...</a><br /></td></tr>
+<tr class="separator:ade17720162668f2ff87eadf07de01194"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a437de66f7e5cef0e168cae421c2a1501" name="a437de66f7e5cef0e168cae421c2a1501"></a>
@@ -118,6 +124,50 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if equal and 0 otherwise</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>uses EPS as valid precision </dd></dl>
+
+</div>
+</div>
+<a id="ade17720162668f2ff87eadf07de01194" name="ade17720162668f2ff87eadf07de01194"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade17720162668f2ff87eadf07de01194">&#9670;&nbsp;</a></span>le_solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int le_solve </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>root</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Solves linear equation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>1st coef </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>2nd coef </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">root</td><td>pointer to the root </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -177,6 +227,43 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of roots of equation </dd></dl>
+
+</div>
+</div>
+<a id="a682fe5f8505e8a50acb3c7cc459f9138" name="a682fe5f8505e8a50acb3c7cc459f9138"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a682fe5f8505e8a50acb3c7cc459f9138">&#9670;&nbsp;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void swap </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Swaps two double numbers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>pointer to the 1st number </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>pointer to the 2nd number </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

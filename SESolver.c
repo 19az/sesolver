@@ -17,12 +17,7 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
 
     int nRoots = 0;
     if (is_equal(a, 0)) {
-        if (is_equal(b, 0)) {
-            nRoots = (is_equal(c, 0)) ? INF : 0;
-        } else {
-            *root1 = -c/b;
-            nRoots = 1;
-        }
+        nRoots = le_solve(b, c, root1);
     } else {
         if (is_equal(b, 0)) {
             if (is_equal(c, 0)) {
@@ -42,19 +37,15 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
             if (is_equal(c, 0)) {
                 *root1 = 0;
                 *root2 = -b/a;
-                if (*root1 > *root2) {
-                    double swap = *root1;
-                    *root1 = *root2;
-                    *root2 = swap;
-                } 
+                if (*root1 > *root2) swap(root1, root2);
                 nRoots = 2;
             } else {
                 double squared_discr = b*b - 4*a*c;
-                if (squared_discr < 0) {
-                    nRoots = 0;
-                } else if (is_equal(squared_discr, 0)) {
+                if (is_equal(squared_discr, 0)) {
                     *root1 = -b/(2*a);
                     nRoots = 1;
+                } else if (squared_discr < 0) {
+                    nRoots = 0;
                 } else {
                     double discr = sqrt(squared_discr);
                     *root1 = (-b - discr)/(2*a);
@@ -70,4 +61,21 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
 
 int is_equal(double a, double b) {
     return (fabs(a - b) < EPS);
+}
+
+void swap(double *a, double *b) {
+    double swap = *a;
+    *a = *b;
+    *b = swap;
+}
+
+int le_solve(double a, double b, double* root) {
+    int nRoots = 0;
+    if (is_equal(a, 0)) {
+        nRoots = (is_equal(b, 0)) ? INF : 0;
+    } else {
+        *root = -b/a;
+        nRoots = 1;
+    }
+    return nRoots;
 }

@@ -10,7 +10,11 @@
 int \mbox{\hyperlink{SESolver_8c_a2f60bba9a49acf5cb0b71341c64f5bcb}{se\+\_\+solve}} (double a, double b, double c, double $\ast$root1, double $\ast$root2)
 \begin{DoxyCompactList}\small\item\em Solves square equation. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{SESolver_8c_a437de66f7e5cef0e168cae421c2a1501}{is\+\_\+equal}} (double a, double b)
-\begin{DoxyCompactList}\small\item\em Checks if two double numbers are equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks if two double numbers are equal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{SESolver_8c_a682fe5f8505e8a50acb3c7cc459f9138}{swap}} (double $\ast$a, double $\ast$b)
+\begin{DoxyCompactList}\small\item\em Swaps two double numbers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{SESolver_8c_ade17720162668f2ff87eadf07de01194}{le\+\_\+solve}} (double a, double b, double $\ast$root)
+\begin{DoxyCompactList}\small\item\em Solves linear equation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -37,6 +41,25 @@ Checks if two double numbers are equal.
 \begin{DoxyNote}{Note}
 uses EPS as valid precision 
 \end{DoxyNote}
+\mbox{\Hypertarget{SESolver_8c_ade17720162668f2ff87eadf07de01194}\label{SESolver_8c_ade17720162668f2ff87eadf07de01194}} 
+\index{SESolver.c@{SESolver.c}!le\_solve@{le\_solve}}
+\index{le\_solve@{le\_solve}!SESolver.c@{SESolver.c}}
+\doxysubsubsection{\texorpdfstring{le\_solve()}{le\_solve()}}
+{\footnotesize\ttfamily int le\+\_\+solve (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double $\ast$}]{root }\end{DoxyParamCaption})}
+
+
+
+Solves linear equation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & 1st coef \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & 2nd coef \\
+\hline
+\mbox{\texttt{ out}}  & {\em root} & pointer to the root \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{SESolver_8c_a2f60bba9a49acf5cb0b71341c64f5bcb}\label{SESolver_8c_a2f60bba9a49acf5cb0b71341c64f5bcb}} 
 \index{SESolver.c@{SESolver.c}!se\_solve@{se\_solve}}
 \index{se\_solve@{se\_solve}!SESolver.c@{SESolver.c}}
@@ -63,3 +86,20 @@ Solves square equation.
 \begin{DoxyReturn}{Returns}
 number of roots of equation 
 \end{DoxyReturn}
+\mbox{\Hypertarget{SESolver_8c_a682fe5f8505e8a50acb3c7cc459f9138}\label{SESolver_8c_a682fe5f8505e8a50acb3c7cc459f9138}} 
+\index{SESolver.c@{SESolver.c}!swap@{swap}}
+\index{swap@{swap}!SESolver.c@{SESolver.c}}
+\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily void swap (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Swaps two double numbers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & pointer to the 1st number \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & pointer to the 2nd number \\
+\hline
+\end{DoxyParams}

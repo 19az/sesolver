@@ -24,3 +24,16 @@ int se_solve(double a, double b, double c, double *root1, double *root2);
 ///
 /// @note uses EPS as valid precision
 int is_equal(double a, double b);
+
+/// @brief Swaps two double numbers
+///
+/// @param[in] a pointer to the 1st number
+/// @param[in] b pointer to the 2nd number
+void swap(double *a, double *b);
+
+/// @brief Solves linear equation
+///
+/// @param[in]  a    1st coef
+/// @param[in]  b    2nd coef
+/// @param[out] root pointer to the root
+int le_solve(double a, double b, double *root);
