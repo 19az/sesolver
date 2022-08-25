@@ -10,6 +10,11 @@ printf("\033[0;32m");      \
 x                          \
 printf("\033[0m");         
 
+#define YELLOW(x)          \
+printf("\033[0;33m");      \
+x                          \
+printf("\033[0m");         
+
 #include <math.h>
 #include <stdio.h>
 
@@ -17,7 +22,7 @@ printf("\033[0m");
 #include "SESolver.h"
 
 void se_solve_ut() {
-    printf("\nUnit test for se_solve()\n");
+    YELLOW(printf("\nUnit test for se_solve()\n");)
 
     const int nTests = 14;
                              //    a         b              c   nr   r1   r2
@@ -82,11 +87,11 @@ void se_solve_ut() {
         }
     }
     unit_test_report(results, nTests);
-    printf("Unit test is over\n\n");
+    YELLOW(printf("Unit test is over\n\n");)
 }
 
 void le_solve_ut() {
-    printf("\nUnit test for le_solve()\n");
+    YELLOW(printf("\nUnit test for le_solve()\n");)
 
     const int nTests = 4;
                              // a  b   nr   r
@@ -131,7 +136,7 @@ void le_solve_ut() {
         }
     }
     unit_test_report(results, nTests);
-    printf("Unit test is over\n\n");
+    YELLOW(printf("Unit test is over\n\n");)
 }
 
 
