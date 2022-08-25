@@ -41,7 +41,7 @@ void se_solve_ut() {
     double root1 = NAN;
     double root2 = NAN;
     for (int i = 0; i < nTests; ++i) {
-        printf("Test # %d ... ", i);
+        printf("Test # %2d ... ", i);
 
         root1 = root2 = 0;
         int nRoots = se_solve(tests[i][0], tests[i][1], tests[i][2], &root1, &root2);
