@@ -1,3 +1,6 @@
+#ifndef SESOLVER_H
+#define SESOLVER_H
+
 /// @file SESolver.h
 
 const int    INF = -1;    ///< This value would be returned by se_solve() in case of infinite number of roots
@@ -37,3 +40,5 @@ void swap(double *a, double *b);
 /// @param[in]  b    2nd coef
 /// @param[out] root pointer to the root
 int le_solve(double a, double b, double *root);
+
+#endif /* SESOLVER_H */
