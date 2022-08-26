@@ -51,4 +51,4 @@ void le_solve_ut();
 void unit_test_report(int* testsnTests);
 
 
-#endif /* SESOLVER_H */
+#endif /* SESOLVERUT_H */
