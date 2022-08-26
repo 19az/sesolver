@@ -4,8 +4,8 @@
 /// @file SESolverUT.h
 
 const int MAXNTESTSSE = 1e3;                    ///< max number of tests in unit test for se_solve()
+const int NARGSSE = 6;                          ///< number of args in unit test for se_solve() 
 const char tests_filename_se[] = "sesut.txt";   ///< name of the file with uint test for se_solve()
-const int NARGSSE = 6;  
                                               
 /// @brief Read 1 tests from the file with tests
 ///

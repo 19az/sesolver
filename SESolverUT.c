@@ -65,7 +65,7 @@ int run_test_se(double *test, int *nRoots, double *root1, double *root2) {
 void se_solve_ut() {
     YELLOW(printf("\nUnit test for se_solve()\n");)
 
-    double test[6] = {};
+    double test[NARGSSE] = {};
     int results[MAXNTESTSSE];
     for (int i = 0; ; ++i) {
         if (read_test_file(test, NARGSSE, tests_filename_se)) {
