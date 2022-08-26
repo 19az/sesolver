@@ -27,16 +27,17 @@ void se_solve_ut() {
     const char *tests_filename = "sesut.txt";
     FILE *tests_file = fopen(tests_filename, "r");
     double test[6] = {};
-    int nTests = 0;
-    fscanf(tests_file, "%d", &nTests);
 
-    int results[nTests] = {};
+    int results[MAXNTESTS] = {};
     double root1 = NAN;
     double root2 = NAN;
-    for (int i = 0; i < nTests; ++i) {
-        fscanf(tests_file,
+    for (int i = 0; ; ++i) {
+        if (fscanf(tests_file,
                "%lg %lg %lg %lg %lg %lg",
-               test, test+1, test+2, test+3, test+4, test+5);
+               test, test+1, test+2, test+3, test+4, test+5) == EOF) {
+            results[i] = -1;
+            break;
+        }
         printf("Test # %2d ... ", i);
 
         root1 = root2 = 0;
@@ -77,7 +78,7 @@ void se_solve_ut() {
                    root2);
         }
     }
-    unit_test_report(results, nTests);
+    unit_test_report(results);
     fclose(tests_file);
     YELLOW(printf("Unit test is over\n\n");)
 }
@@ -93,7 +94,7 @@ void le_solve_ut() {
                                {1, 1,   1, -1}, // 3
                               };
 
-    int results[nTests] = {};
+    int results[nTests + 1] = {};
     double root = NAN;
     for (int i = 0; i < nTests; ++i) {
         printf("Test # %d ... ", i);
@@ -127,14 +128,15 @@ void le_solve_ut() {
                    root);
         }
     }
-    unit_test_report(results, nTests);
+    results[4] = -1;
+    unit_test_report(results);
     YELLOW(printf("Unit test is over\n\n");)
 }
 
 
-void unit_test_report(int *tests, int nTests) {
+void unit_test_report(int *tests) {
     RED(printf("Failed tests numbers: ");)
-    for (int i = 0; i < nTests; ++i) {
+    for (int i = 0; tests[i] != -1 && i < MAXNTESTS; ++i) {
         if (!tests[i]) {
             RED(printf("%d ", i);)
         }
