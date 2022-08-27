@@ -32,23 +32,23 @@ int main() {
     int nRoots = se_solve(a, b, c, &root1, &root2);
 
     switch(nRoots) {
-        case 0:   printf("Equation has no roots\n");
-                  break;
+        case 0:  printf("Equation has no roots\n");
+                 break;
 
-        case 1:   printf("Equation has 1 root: %lg\n", root1);
-                  break;
+        case 1:  printf("Equation has 1 root: %lg\n", root1);
+                 break;
 
-        case 2:   printf("Equation has 2 roots: %lg, %lg\n", root1, root2);
-                  break;
+        case 2:  printf("Equation has 2 roots: %lg, %lg\n", root1, root2);
+                 break;
 
-        case INF: printf("Any number is a root\n");
-                  break;
+        case -1: printf("Any number is a root\n");
+                 break;
 
-        case ERR: printf("Some of coefficients are not finite\n");
-                  break;
+        case -2: printf("Some of coefficients are not finite\n");
+                 break;
 
-        default:  printf("Error. Equaiton has %d roots\n", nRoots);
-                  return 1;
+        default: printf("Error. Equaiton has %d roots\n", nRoots);
+                 return 1;
     }
 
     return 0;

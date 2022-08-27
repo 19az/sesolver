@@ -3,9 +3,14 @@
 
 /// @file SESolver.h
 
-const int    INF = -1;    ///< This value would be returned by se_solve() in case of infinite number of roots
-const int    ERR = -2;    ///< This value would be returned by se_solve() in case of non-finite coefficients
 const double EPS = 1e-10; ///< Precision of equality of two numbers
+enum retcode_se {            ///< Return codes for se_solve():
+                 INF = -1,   /// INF - infinite number of roots
+                 COEF = -2,  /// COEF - some coefficients are not finite
+                 ROOT = -3}; /// ROOT - bad pointers to roots
+                                                        
+                                                        
+                                                        
 
 /// @brief Solves square equation
 /// 

@@ -7,12 +7,14 @@
 #include "SESolver.h"
 
 int se_solve(double a, double b, double c, double *root1, double *root2) {
-    assert(root1 != NULL);
-    assert(root2 != NULL);
-    assert(root1 != root2);
-
+    enum retcode_se ret;
+    if (root1 == NULL || root2 == NULL || root1 == root2) {
+        ret = ROOT;
+        return ret;
+    }
     if (!std::isfinite(a) || !std::isfinite(b) || !std::isfinite(c)) {
-        return ERR;
+        ret = COEF;
+        return ret;
     }
 
     int nRoots = 0;
@@ -72,7 +74,8 @@ void swap(double *a, double *b) {
 int le_solve(double a, double b, double* root) {
     int nRoots = 0;
     if (is_equal(a, 0)) {
-        nRoots = (is_equal(b, 0)) ? INF : 0;
+        enum retcode_se ret = INF;
+        nRoots = (is_equal(b, 0)) ? ret : 0;
     } else {
         *root = -b/a;
         nRoots = 1;

@@ -3,28 +3,65 @@
 
 /// @file SESolverUT.h
 
-const int MAXNTESTSSE = 1e3;                    ///< max number of tests in unit test for se_solve()
-const int NARGSSE = 6;                          ///< number of args in unit test for se_solve() 
-const char tests_filename_se[] = "sesut.txt";   ///< name of the file with uint test for se_solve()
+const int MAXNTESTS_SE     = 1e3;             ///< max number of tests in unit test for se_solve()
+const int MAXBUFFERSIZE_SE = 1e5;             ///< max len of file with unit test for se_solve()
+const char tests_filename_se[] = "sesut.txt"; ///< name of the file with uint test for se_solve()
+enum retcode_rtf {                ///< return codes for read_tests_file()
+                   FILE_ERR = 1}; /// FILE_ERR - cannot open file
+
+/// @struct SETestArgs
+///
+/// @brief Struct for arguments of unit test for se_solve()
+/// 
+/// @var SETestArgs::a 1ts coef
+/// @var SETestArgs::b 2nd coef
+/// @var SETestArgs::c 3rd coef
+/// @var SETestArgs::nRoots number of roots
+/// @var SETestArgs::root1 1st root
+/// @var SETestArgs::root2 2nd root
+struct SETestArgs {
+    double a, b, c;
+    int nRoots;
+    double root1, root2;
+};
+
+/// @struct LETestArgs
+///
+/// @brief Struct for arguments of unit test for le_solve()
+/// 
+/// @var SETestArgs::a 1ts coef
+/// @var SETestArgs::b 2nd coef
+/// @var SETestArgs::nRoots number of roots
+/// @var SETestArgs::root 1st root
+struct LETestArgs {
+    double a, b;
+    int nRoots;
+    double root;
+};
                                               
-/// @brief Read 1 tests from the file with tests
+/// @brief Reads file into buffer
 ///
-/// @param[out] test array with args of test
-/// @param[in] nArgs number of args in test
-/// @param[in] test_filename name of the file with tests
+/// @param[in] filename name of the file
+/// @param[out] buffer buffer for text
+int read_file(const char *filename, char *buffer);
+
+/// @brief Gets one test from buffer
 ///
-/// @return 1 if EOF is reached, 0 otherwise
-int read_test_file(double *test, int nArgs, const char *test_filename);
+/// @param[out] test pointer to struct with args
+/// @param[in] buffer buffer with text
+///
+/// @return number of read bytes, -1 if EOF is reached
+int get_one_test_se(SETestArgs *test, const char *buffer);
 
 /// @brief Runs 1 test from unit test for se_solve()
 ///
-/// @param[in] test array of args of test
+/// @param[in] test pointer to struct with args
 /// @param[out] nRoots pointer to the number of roots result
 /// @param[out] root1 pointer to the 1st root result
 /// @param[out] root2 pointer to the 2nd root result
 ///
 /// @return 1 if test is passed, 0 otherwise
-int run_test_se(double *test, int* nRoots, double *root1, double *root2);
+int run_test_se(SETestArgs *test, int* nRoots, double *root1, double *root2);
 
 /// @brief Unit test for se_solve()
 ///
@@ -33,12 +70,12 @@ void se_solve_ut();
 
 /// @brief Runs 1 test from unit test for le_solve()
 ///
-/// @param[in] test array of args of test
+/// @param[in] test pointer to struct with args
 /// @param[out] nRoots pointer to the number of roots result
 /// @param[out] root1 pointer to the 1st root result
 ///
 /// @return 1 if test is passed, 0 otherwise
-int run_test_se(double *test, int* nRoots, double *root1);
+int run_test_le(LETestArgs *test, int* nRoots, double *root1);
 
 /// @brief Unit test for le_solve()
 /// 
