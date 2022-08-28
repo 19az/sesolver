@@ -6,8 +6,12 @@
 const int MAXNTESTS_SE     = 1e3;             ///< max number of tests in unit test for se_solve()
 const int MAXBUFFERSIZE_SE = 1e5;             ///< max len of file with unit test for se_solve()
 const char tests_filename_se[] = "sesut.txt"; ///< name of the file with uint test for se_solve()
-enum retcode_rtf {                ///< return codes for read_tests_file()
-                   FILE_ERR = 1}; /// FILE_ERR - cannot open file
+
+/// struct for return codes for read_tests_file()
+enum retcode_rf {              
+                 FILE_ERR = 1, ///< cannot open file
+                 SIZE_ERR = 2  ///< buffer too small
+                 };
 
 /// @struct SETestArgs
 ///
@@ -43,7 +47,10 @@ struct LETestArgs {
 ///
 /// @param[in] filename name of the file
 /// @param[out] buffer buffer for text
-int read_file(const char *filename, char *buffer);
+/// @param[out] file_size size of read file
+///
+/// @return 0 if ok, 1 if cannot open file, 2 if buffer too small
+int read_file(const char *filename, char *buffer, size_t *file_size);
 
 /// @brief Gets one test from buffer
 ///

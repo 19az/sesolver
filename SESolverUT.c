@@ -23,19 +23,21 @@ printf("\033[0m");
 #include "SESolverUT.h"
 #include "SESolver.h"
 
-int read_file(const char *filename, char *buffer) {
+int read_file(const char *filename, char *buffer, size_t *file_size) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        enum retcode_rtf ret = FILE_ERR;
+        enum retcode_rf ret = FILE_ERR;
         return ret;
     }
         
     fseek(file, 0, SEEK_END);
-    long file_size = ftell(file);
+    *file_size = ftell(file);
+    if (*file_size > MAXBUFFERSIZE_SE) {
+        enum retcode_rf ret = SIZE_ERR;
+        return ret;
+    }
     fseek(file, 0, SEEK_SET);
-    fread(buffer, file_size, 1, file);
-    buffer[file_size] = '\n';
-    buffer[file_size + 1] = '\0';
+    fread(buffer, *file_size, 1, file);
 
     fclose(file);
     return 0;
@@ -81,7 +83,14 @@ void se_solve_ut() {
     YELLOW(printf("\nUnit test for se_solve()\n");)
 
     char buffer[MAXBUFFERSIZE_SE];
-    read_file(tests_filename_se, buffer);
+    size_t file_size = 0;
+    if (read_file(tests_filename_se, buffer, &file_size) != 0) {
+        printf("Error occured during reading file\n");
+        return;
+    }
+    buffer[file_size] = '\n';
+    buffer[file_size + 1] = '\0';
+
     SETestArgs test  = {};
     int results[MAXNTESTS_SE];
     int bytes_read = 0;
