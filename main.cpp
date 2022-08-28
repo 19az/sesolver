@@ -22,7 +22,10 @@ int main() {
         printf("Error. Wrong type of data\n");
         int ch = 0;
         while ((ch = getchar()) != '\n') {
-            assert(("EOF is read", ch != -1));
+            if(ch != -1) {
+                printf("EOF is reached\n");
+                return 1;
+            }
         }
         printf("Try again:\n");
     }

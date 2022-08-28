@@ -1,23 +1,23 @@
 CC = g++
-CFLAGS =
-TARGET = SESolver
-SRCS = main.c SESolver.c SESolverUT.c
-OBJS = $(SRCS:.c=.o)
+CFLAGS = -Wall -Wextra
+EXE = SESolver
+SRCS = main.cpp SESolver.cpp SESolverUT.cpp
+OBJS = $(SRCS:.cpp=.o)
 
-.PHONY: all ut clean
+.PHONY: all unit_tets clean
 
-all: $(TARGET)
+all: $(EXE)
 
-ut: CFLAGS+=-DSEUT -DLEUT
+unit_test: CFLAGS+= -DSEUT -DLEUT
 
-ut: all
+unit_test: all
 
-$(TARGET): $(OBJS)
-	$(CC) -o $(TARGET) $(OBJS) $(CFLAGS)
+$(EXE): $(OBJS)
+	$(CC) -o $(EXE) $(OBJS) $(CFLAGS)
  
-.c.o:
-	$(CC) $(CFLAGS)  -c $< -o $@
+.cpp.o:
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(TARGET) $(OBJS)
+	rm -rf $(EXE) $(OBJS)
 
