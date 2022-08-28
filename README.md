@@ -5,6 +5,6 @@ Square eqution solver for MIPT summer school 2022
     make
     ./SESolver
 ## Unit test
-For running unit tests for se_solve() and le_solve():
+For running unit tests
     make ut
     ./SESolver
