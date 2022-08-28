@@ -6,10 +6,10 @@ Solves equation $Ax^{2} + Bx + C = 0$ where $A, B, C$ double values
     
     int se_solve(double a, double b, double c, double *root1, double *root2);
 ## Input
-a, b, c; -- coefficients of equation<br>
-root1, root2; -- roots of equation
+a, b, c; - coefficients of equation<br>
+root1, root2; - roots of equation
 ## Return value
-nRoots -- number of roots
+nRoots - number of roots
 ## Example
     
     ...
