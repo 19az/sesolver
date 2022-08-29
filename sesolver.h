@@ -5,9 +5,9 @@
 
 const double EPS = 1e-10; ///< Precision of equality of two numbers
 enum retcode_se {            ///< Return codes for se_solve():
-                 INF = -1,   /// INF - infinite number of roots
-                 COEF = -2,  /// COEF - some coefficients are not finite
-                 ROOT = -3}; /// ROOT - bad pointers to roots
+                 INF = -1,   ///< INF - infinite number of roots
+                 COEF = -2,  ///< COEF - some coefficients are not finite
+                 ROOT = -3}; ///< ROOT - bad pointers to roots
                                                         
                                                         
                                                         

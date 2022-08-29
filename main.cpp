@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "SESolver.h"
-#include "SESolverUT.h"
+#include "sesolver.h"
+#include "sesolver_ut.h"
 
 int main() {
 #ifdef SEUT
