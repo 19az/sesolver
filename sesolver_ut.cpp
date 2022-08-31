@@ -1,5 +1,3 @@
-/// @file SESolverUT.c
-
 #define RED(x)             \
 printf("\033[1;31m");      \
 x                          \
@@ -25,36 +23,32 @@ printf("\033[0m");
 #include "sesolver.h"
 
 int get_one_test_se(SETestArgs *test, const char *buffer) {
-    int bytes_read = 0;
-    int end_of_file = sscanf(buffer,
-                             "%lg %lg %lg %d %lg %lg %n",
-                              &test->a,
-                              &test->b,
-                              &test->c,
-                              &test->nRoots,
-                              &test->root1,
-                              &test->root2,
-                              &bytes_read);
-
-    if (end_of_file == EOF) {
+    if (test == NULL || buffer == NULL)
         return -1;
-    } else {
-        return bytes_read;
-    }
+
+    int bytes_read = 0;
+    sscanf(buffer,
+           "%lg %lg %lg %d %lg %lg %n",
+           &test->a,
+           &test->b,
+           &test->c,
+           &test->nRoots,
+           &test->root1,
+           &test->root2,
+           &bytes_read);
+
+    return bytes_read;
 }
 
 int run_test_se(SETestArgs *test, int *nRoots, double *root1, double *root2) {
+    if (test == NULL || nRoots == NULL || root1 == NULL || root2 == NULL)
+        return -1;
+
     *nRoots = se_solve(test->a, test->b, test->c, root1, root2);
-    int result = 1;
-    if (*nRoots == test->nRoots) {
-        if (*nRoots == 1) {
-            result = (is_equal(*root1, test->root1));
-        }
-        if (*nRoots == 2) {
-            result = (is_equal(*root1, test->root1) && is_equal(*root2, test->root2));
-        }
-    } else {
-        result = 0;
+    int result = (*nRoots == test->nRoots);
+    if (result) {
+        if (*nRoots == 1) result *= is_equal(*root1, test->root1);
+        if (*nRoots == 2) result *= is_equal(*root2, test->root2);
     }
 
     return result;
@@ -63,29 +57,43 @@ int run_test_se(SETestArgs *test, int *nRoots, double *root1, double *root2) {
 void se_solve_ut() {
     YELLOW(printf("\nUnit test for se_solve()\n");)
 
-    char buffer[MAXBUFFERSIZE_SE];
-    size_t file_size = (size_t) get_file_size(tests_filename_se);
-    if (read_file(tests_filename_se, buffer, file_size) == 0) {
-        printf("File is empty or error occured during reading file\n");
-        return;
+    int file_size = get_file_size(tests_filename_se);
+    switch (file_size) {
+        case 0:  printf("File with tests is empty\n");
+                 return;
+        case -2: printf("Cannot get stat of file with tests\n");
+                 return;
+        case -3: printf("tests_file_name is NULL\n");
+                 return;
+        default: break;
     }
-    buffer[file_size] = '\n';
-    buffer[file_size + 1] = '\0';
 
-    SETestArgs test  = {};
-    int results[MAXNTESTS_SE];
-    int bytes_read = 0;
+    char buffer[MAXBUFFERSIZE];
+    int bytes_read = read_file_text(tests_filename_se, buffer, (size_t) file_size);
+    switch (bytes_read) {
+        case 0:  printf("Error occured during reading file with tests\n");
+                 return;
+        case -1: printf("Cannot open file with tests\n");
+                 return;
+        case -3: printf("buffer == NULL\n");
+                 return;
+        default: break;
+    }
+    buffer[file_size] = '\0';
+
+    SETestArgs test;
+    int results[MAXNTESTS];
+    bytes_read = 0;
     char *buffer_ptr = buffer;
-    for (int i = 0; (bytes_read = get_one_test_se(&test, buffer_ptr)) != -1; ++i) {
+    for (int i = 0; (bytes_read = get_one_test_se(&test, buffer_ptr)) > 0; ++i) {
         buffer_ptr += bytes_read;
         printf("Test # %2d ... ", i);
 
         int nRoots = 0;
         double root1 = NAN;
         double root2 = NAN;
-        results[i] = run_test_se(&test, &nRoots, &root1, &root2);
+        results[i] = (run_test_se(&test, &nRoots, &root1, &root2) == 1);
         results[i + 1] = -1;
-
         if (results[i]) {
             GREEN(printf("OK\n");)
         } else {
@@ -110,20 +118,35 @@ void se_solve_ut() {
                    root2);
         }
     }
+
     unit_test_report(results);
     YELLOW(printf("Unit test is over\n\n");)
 }
 
+int get_one_test_le(LETestArgs *test, const char *buffer) {
+    if (test == NULL || buffer == NULL)
+        return -1;
+
+    int bytes_read = 0;
+    sscanf(buffer,
+           "%lg %lg %d %lg %n",
+           &test->a,
+           &test->b,
+           &test->nRoots,
+           &test->root,
+           &bytes_read);
+
+    return bytes_read;
+}
+
 int run_test_le(LETestArgs *test, int *nRoots, double *root) {
+    if (test == NULL || nRoots == NULL || root == NULL) 
+        return -1;
+    
     *nRoots = le_solve(test->a, test->b, root);
-    int result = 1;
-    if (*nRoots == test->nRoots) {
-        if (*nRoots == 1) {
-            result = (is_equal(*root, test->root));
-        }
-    } else {
-        result = 0;
-    }
+    int result = (*nRoots == test->nRoots);
+    if (result && (*nRoots == 1)) 
+        result = is_equal(*root, test->root);
 
     return result;
 }
@@ -131,22 +154,42 @@ int run_test_le(LETestArgs *test, int *nRoots, double *root) {
 void le_solve_ut() {
     YELLOW(printf("\nUnit test for le_solve()\n");)
 
-    const int nTests = 4;
-                              // a  b  nr   r
-    LETestArgs tests[nTests] = {{0, 0, -1,  0}, // 0
-                                {0, 1,  0,  0}, // 1
-                                {1, 0,  1,  0}, // 2
-                                {1, 1,  1, -1}, // 3
-                               };
+    int file_size = get_file_size(tests_filename_le);
+    switch (file_size) {
+        case 0:  printf("File with tests is empty\n");
+                 return;
+        case -2: printf("Cannot get stat of file with tests\n");
+                 return;
+        case -3: printf("tests_file_name is NULL\n");
+                 return;
+        default: break;
+    }
 
-    int results[nTests + 1] = {};
-    for (int i = 0; i < nTests; ++i) {
-        printf("Test # %d ... ", i);
+    char buffer[MAXBUFFERSIZE];
+    int bytes_read = read_file_text(tests_filename_le, buffer, (size_t) file_size);
+    switch (bytes_read) {
+        case 0:  printf("Error occured during reading file with tests\n");
+                 return;
+        case -1: printf("Cannot open file with tests\n");
+                 return;
+        case -3: printf("buffer == NULL\n");
+                 return;
+        default: break;
+    }
+    buffer[file_size] = '\0';
+
+    LETestArgs test;
+    int results[MAXNTESTS];
+    bytes_read = 0;
+    char *buffer_ptr = buffer;
+    for (int i = 0; (bytes_read = get_one_test_le(&test, buffer_ptr)) > 0; ++i) {
+        buffer_ptr += bytes_read;
+        printf("Test # %2d ... ", i);
 
         int nRoots = 0;
         double root = NAN;
-        results[i] = run_test_le(tests + i, &nRoots, &root);
-
+        results[i] = (run_test_le(&test, &nRoots, &root) == 1);
+        results[i + 1] = -1;
         if (results[i]) {
             GREEN(printf("OK\n");)
         } else {
@@ -157,26 +200,42 @@ void le_solve_ut() {
                    "root(exp)   = %lg\n"
                    "nRoots(res) = %d\n"
                    "root(res)   = %lg\n",
-                   tests[i].a,
-                   tests[i].b,
-                   tests[i].nRoots,
-                   tests[i].root,
+                   test.a,
+                   test.b,
+                   test.nRoots,
+                   test.root,
                    nRoots,
                    root);
         }
     }
-    results[4] = -1;
+
     unit_test_report(results);
     YELLOW(printf("Unit test is over\n\n");)
 }
 
-
-void unit_test_report(int *tests) {
+void unit_test_report(int *report) {
+    if (report == NULL) {
+        printf("Bad pointer to the report array\n");
+        return;
+    }
+    
+    int none_failed_test = 1;
     RED(printf("Failed tests numbers: ");)
-    for (int i = 0; tests[i] != -1; ++i) {
-        if (!tests[i]) {
+    for (int i = 0; report[i] != -1; ++i) {
+        if (!report[i]) {
+            none_failed_test = 0;
             RED(printf("%d ", i);)
         }
     }
+    if (none_failed_test) {
+        RED(printf("None");)
+    }
     printf("\n");
+}
+
+int main(void) {
+    se_solve_ut();
+    le_solve_ut();
+
+    return 0;
 }

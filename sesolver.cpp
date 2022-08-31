@@ -1,18 +1,24 @@
-/// @file SESolver.c
-
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
 
 #include "sesolver.h"
 
+int is_equal(double a, double b) {
+    return (fabs(a - b) < EPS);
+}
+
+void swap(double *a, double *b) {
+    double swap = *a;
+    *a = *b;
+    *b = swap;
+}
+
 int se_solve(double a, double b, double c, double *root1, double *root2) {
-    if (root1 == NULL || root2 == NULL || root1 == root2) {
-        return ROOT;
-    }
-    if (!std::isfinite(a) || !std::isfinite(b) || !std::isfinite(c)) {
-        return COEF;
-    }
+    if (root1 == NULL || root2 == NULL || root1 == root2)
+        return ERR_ROOT_SESOLVER;
+    if (!std::isfinite(a) || !std::isfinite(b) || !std::isfinite(c))
+        return ERR_COEF_SESOLVER;
 
     int nRoots = 0;
     if (is_equal(a, 0)) {
@@ -36,7 +42,8 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
             if (is_equal(c, 0)) {
                 *root1 = 0;
                 *root2 = -b/a;
-                if (*root1 > *root2) swap(root1, root2);
+                if (*root1 > *root2)
+                    swap(root1, root2);
                 nRoots = 2;
             } else {
                 double squared_discr = b*b - 4*a*c;
@@ -58,20 +65,15 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
     return nRoots;
 }
 
-int is_equal(double a, double b) {
-    return (fabs(a - b) < EPS);
-}
-
-void swap(double *a, double *b) {
-    double swap = *a;
-    *a = *b;
-    *b = swap;
-}
-
 int le_solve(double a, double b, double* root) {
+    if (root == NULL)
+        return ERR_ROOT_SESOLVER;
+    if (!std::isfinite(a) || !std::isfinite(b))
+        return ERR_COEF_SESOLVER;
+
     int nRoots = 0;
     if (is_equal(a, 0)) {
-        nRoots = (is_equal(b, 0)) ? INF : 0;
+        nRoots = (is_equal(b, 0)) ? INF_ROOTS_SESOLVER : 0;
     } else {
         *root = -b/a;
         nRoots = 1;

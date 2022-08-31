@@ -3,15 +3,8 @@
 #include <math.h>
 
 #include "sesolver.h"
-#include "sesolver_ut.h"
 
-int main() {
-#ifdef SEUT
-    se_solve_ut();
-#endif
-#ifdef LEUT
-    le_solve_ut();
-#endif
+int main(void) {
     printf("Square equation solver\n");
 
     double a = NAN;
@@ -22,7 +15,7 @@ int main() {
         printf("Error. Wrong type of data\n");
         int ch = 0;
         while ((ch = getchar()) != '\n') {
-            if(ch != -1) {
+            if(ch == -1) {
                 printf("EOF is reached\n");
                 return 1;
             }
@@ -33,7 +26,6 @@ int main() {
     double root1 = NAN;
     double root2 = NAN;
     int nRoots = se_solve(a, b, c, &root1, &root2);
-
     switch(nRoots) {
         case 0:  printf("Equation has no roots\n");
                  break;
