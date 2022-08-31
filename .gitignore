@@ -2,4 +2,5 @@ a.out
 sb.c
 doc/
 sesolver
+sesolver_ut
 *.o

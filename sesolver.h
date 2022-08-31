@@ -4,24 +4,6 @@
 /// @file SESolver.h
 
 const double EPS = 1e-10; ///< Precision of equality of two numbers
-enum retcode_se {            ///< Return codes for se_solve():
-                 INF = -1,   ///< INF - infinite number of roots
-                 COEF = -2,  ///< COEF - some coefficients are not finite
-                 ROOT = -3}; ///< ROOT - bad pointers to roots
-                                                        
-                                                        
-                                                        
-
-/// @brief Solves square equation
-/// 
-/// @param[in]  a     1st coef
-/// @param[in]  b     2nd coef
-/// @param[in]  c     3rd coef
-/// @param[out] root1 pointer to the 1st root
-/// @param[out] root2 pointer to the 2nd root
-///
-/// @return number of roots of equation
-int se_solve(double a, double b, double c, double *root1, double *root2);
 
 /// @brief Checks if two double numbers are equal
 /// 
@@ -39,11 +21,37 @@ int is_equal(double a, double b);
 /// @param[in] b pointer to the 2nd number
 void swap(double *a, double *b);
 
+/// Return codes for se_solve() and le_solve():
+enum retcodes_sesolver {
+INF_ROOTS_SESOLVER = -1, ///< infinite number of roots
+ERR_COEF_SESOLVER  = -2, ///< some coefficients are not finite
+ERR_ROOT_SESOLVER  = -3  ///< bad pointers to roots
+};
+                                                        
+/// @brief Solves square equation
+/// 
+/// @param[in]  a 1st coef
+/// @param[in]  b 2nd coef
+/// @param[in]  c 3rd coef
+/// @param[out] root1 pointer to the 1st root
+/// @param[out] root2 pointer to the 2nd root
+///
+/// @return number of roots on success,
+/// -1 if there are infinite number of roots
+/// -2 if some given coefficients are not finite numbers
+/// -3 if given pointers to root are NULL or equal
+int se_solve(double a, double b, double c, double *root1, double *root2);
+
 /// @brief Solves linear equation
 ///
-/// @param[in]  a    1st coef
-/// @param[in]  b    2nd coef
+/// @param[in]  a 1st coef
+/// @param[in]  b 2nd coef
 /// @param[out] root pointer to the root
+///
+/// @return number of roots on success,
+/// -1 if there are infinite number of roots,
+/// -2 if some given coefficients are not finite numbers,
+/// -3 if given pointer to root is NULL
 int le_solve(double a, double b, double *root);
 
 #endif /* SESOLVER_H */
