@@ -16,11 +16,10 @@ printf("\033[0m");
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
-#include <string.h>
 
-#include "rwfile.h"
+#include "../rwfile/rwfile.h"
+#include "../sesolver.h"
 #include "sesolver_ut.h"
-#include "sesolver.h"
 
 int get_one_test_se(SETestArgs *test, const char *buffer) {
     if (test == NULL || buffer == NULL)

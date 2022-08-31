@@ -7,8 +7,8 @@
 
 const int MAXNTESTS     = 1e2;               ///< max number of tests in unit test for se_solve()
 const int MAXBUFFERSIZE = 1e3;               ///< max len of file with unit test for se_solve()
-const char tests_filename_se[] = "sesut.txt"; ///< name of the file with tests for se_solve()
-const char tests_filename_le[] = "lesut.txt"; ///< name of the file with tests for le_solve()
+const char tests_filename_se[] = "unit_test/sesut.txt"; ///< name of the file with tests for se_solve()
+const char tests_filename_le[] = "unit_test/lesut.txt"; ///< name of the file with tests for le_solve()
 
 /// Struct to represent arguments for unit test for se_solve()
 struct SETestArgs {
