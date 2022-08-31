@@ -1,7 +1,7 @@
 #ifndef SESOLVER_H
 #define SESOLVER_H
 
-/// @file SESolver.h
+/// @file sesolver.h
 
 const double EPS = 1e-10; ///< Precision of equality of two numbers
 

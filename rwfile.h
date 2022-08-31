@@ -1,6 +1,8 @@
 #ifndef RWFILE_H
 #define RWFILE_H
 
+/// @file rwfile.h
+
 /// Return codes for rwfile.h
 enum retcodes_rwfile_h 
 { 
