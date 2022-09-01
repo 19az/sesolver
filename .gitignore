@@ -4,4 +4,3 @@ doc/
 sesolver
 sesolver_ut
 *.o
-flags

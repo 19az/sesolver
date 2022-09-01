@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS =
-include ../flags
-EXE = sesolver
-SRCS = main.cpp rwfile/rwfile.cpp sesolver.cpp
+include ../../flags
+EXE = sesolver_ut
+SRCS = ../rwfile/rwfile.cpp ../sesolver.cpp sesolver_ut.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXE)
@@ -15,3 +15,4 @@ $(EXE): $(OBJS)
 
 clean:
 	rm -rf $(EXE) $(OBJS)
+
