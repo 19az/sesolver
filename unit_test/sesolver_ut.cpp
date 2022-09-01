@@ -68,7 +68,7 @@ void se_solve_ut() {
     }
 
     char buffer[MAXBUFFERSIZE];
-    int bytes_read = read_file_text(tests_filename_se, buffer, (size_t) file_size);
+    int bytes_read = read_file(tests_filename_se, buffer, (size_t) file_size);
     switch (bytes_read) {
         case 0:  printf("Error occured during reading file with tests\n");
                  return;
@@ -165,7 +165,7 @@ void le_solve_ut() {
     }
 
     char buffer[MAXBUFFERSIZE];
-    int bytes_read = read_file_text(tests_filename_le, buffer, (size_t) file_size);
+    int bytes_read = read_file(tests_filename_le, buffer, (size_t) file_size);
     switch (bytes_read) {
         case 0:  printf("Error occured during reading file with tests\n");
                  return;
