@@ -1,7 +1,7 @@
-#ifndef SESOLVER_H
-#define SESOLVER_H
+#ifndef EQUATIONS_H
+#define EQUATIONS_H
 
-/// @file sesolver.h
+/// @file equations.h
 
 const double EPS = 1e-10; ///< Precision of equality of two numbers
 
@@ -22,7 +22,8 @@ int is_equal(double a, double b);
 void swap(double *a, double *b);
 
 /// Return codes for se_solve() and le_solve():
-enum retcodes_sesolver {
+enum retcodes_sesolver
+{
 INF_ROOTS_SESOLVER = -1, ///< infinite number of roots
 ERR_COEF_SESOLVER  = -2, ///< some coefficients are not finite
 ERR_ROOT_SESOLVER  = -3  ///< bad pointers to roots
@@ -54,4 +55,4 @@ int se_solve(double a, double b, double c, double *root1, double *root2);
 /// -3 if given pointer to root is NULL
 int le_solve(double a, double b, double *root);
 
-#endif /* SESOLVER_H */
+#endif /* EQUATIONS_H */

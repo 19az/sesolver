@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "sesolver.h"
+#include "lib/equations/equations.h"
 
 int main(void) {
     printf("Square equation solver\n");

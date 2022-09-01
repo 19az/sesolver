@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS =
-include ../flags
+include flags
 EXE = sesolver
-SRCS = src/main.cpp src/sesolver.cpp
+SRCS = main.cpp lib/equations/equations.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXE)

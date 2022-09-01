@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "sesolver.h"
+#include "equations.h"
 
 int is_equal(double a, double b) {
     return (fabs(a - b) < EPS);
@@ -14,9 +14,13 @@ void swap(double *a, double *b) {
 }
 
 int se_solve(double a, double b, double c, double *root1, double *root2) {
-    if (root1 == NULL || root2 == NULL || root1 == root2)
+    if (root1 == NULL ||
+        root2 == NULL ||
+        root1 == root2)
         return ERR_ROOT_SESOLVER;
-    if (!std::isfinite(a) || !std::isfinite(b) || !std::isfinite(c))
+    if (!std::isfinite(a) ||
+        !std::isfinite(b) ||
+        !std::isfinite(c))
         return ERR_COEF_SESOLVER;
 
     int nRoots = 0;
@@ -67,7 +71,8 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
 int le_solve(double a, double b, double* root) {
     if (root == NULL)
         return ERR_ROOT_SESOLVER;
-    if (!std::isfinite(a) || !std::isfinite(b))
+    if (!std::isfinite(a) ||
+        !std::isfinite(b))
         return ERR_COEF_SESOLVER;
 
     int nRoots = 0;
