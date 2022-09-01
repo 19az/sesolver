@@ -2,7 +2,7 @@ CC = g++
 CFLAGS =
 include ../../flags
 EXE = sesolver_ut
-SRCS = ../rwfile/rwfile.cpp ../src/sesolver.cpp sesolver_ut.cpp
+SRCS = ../lib/rwfile/rwfile.cpp ../src/sesolver.cpp sesolver_ut.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXE)

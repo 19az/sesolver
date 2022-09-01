@@ -17,7 +17,7 @@ printf("\033[0m");
 #include <math.h>
 #include <stdio.h>
 
-#include "../rwfile/rwfile.h"
+#include "../lib/rwfile/rwfile.h"
 #include "../src/sesolver.h"
 #include "sesolver_ut.h"
 
