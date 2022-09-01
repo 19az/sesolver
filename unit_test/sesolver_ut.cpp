@@ -18,7 +18,7 @@ printf("\033[0m");
 #include <stdio.h>
 
 #include "../rwfile/rwfile.h"
-#include "../sesolver.h"
+#include "../src/sesolver.h"
 #include "sesolver_ut.h"
 
 int get_one_test_se(SETestArgs *test, const char *buffer) {
