@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function test {
-    echo -n "Test: "
+    echo -n "Test # $nTest: "
     expected=$4
     res=`echo $1 $2 $3 | ./sesolver`
     if [[ $res = "$expected" ]]
@@ -19,9 +19,10 @@ function test {
         echo "$res"
         echo
     fi
-    echo "Test finished"
+    nTest=$(($nTest + 1))
     echo
 }
+nTest=1
 
 make unit_test
 echo "Unit test for sesolver"
