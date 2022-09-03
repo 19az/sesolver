@@ -1,15 +1,17 @@
 #!/bin/bash
 
+. ./unit_test/colorful_printf.sh
+
 function test {
     input=$1
     expected=`printf $2`
-    printf "Test # $nTest: "
+    yellow_printf "Test # $nTest: "
     res=`printf "$input" | ./sesolver`
     if [[ $res = "$expected" ]]
     then
-        printf "OK\n\n"
+        green_printf "OK\n\n"
     else
-        printf "Failed\n\n"
+        red_printf "Failed\n\n"
         printf "Args: $input\n\n"
         printf "Expected:\n$expected\n\n"
         printf "Result:\n$res\n\n"
@@ -18,10 +20,10 @@ function test {
 }
 nTest=1
 
-file="test.txt"
+file="unit_test/test.txt"
 
 make
-printf "Unit test for sesolver\n\n"
+yellow_printf "Unit test for sesolver\n\n"
 OLD_IFS=$IFS
 IFS=$'\n'
 for test in `cat $file`
@@ -30,4 +32,4 @@ do
     test $test
 done
 IFS=$OLD_IFS
-echo "Unit test is over"
+yellow_printf "Unit test is over\n"
