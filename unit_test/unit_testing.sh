@@ -12,7 +12,7 @@ function run_test {
         green_printf "OK\n\n"
     else
         red_printf "Failed\n\n"
-        printf "Args: $input\n\n"
+        printf "Args: \n$input\n\n"
         printf "Expected:\n$expected\n\n"
         printf "Result:\n$res\n\n"
     fi
