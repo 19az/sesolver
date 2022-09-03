@@ -1,5 +1,5 @@
 CC = g++
-include ../../debugflags
+include debugflags
 EXE = sesolver
 SRCS = ../main.cpp ../lib/equations/equations.cpp
 OBJS = $(SRCS:.cpp=.o)
