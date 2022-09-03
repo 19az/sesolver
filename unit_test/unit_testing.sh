@@ -7,7 +7,7 @@ function run_test {
     expected=`printf "$3"`
     yellow_printf "Test # $nTest: "
     res=`printf "$input" | ./$1`
-    if [[ $res = "$expected" ]]
+    if [ "$res" = "$expected" ]
     then
         green_printf "OK\n\n"
     else
@@ -15,9 +15,11 @@ function run_test {
         printf "Args: \n$input\n\n"
         printf "Expected:\n$expected\n\n"
         printf "Result:\n$res\n\n"
+        failed_tests+="$nTest "
     fi
     nTest=$(($nTest + 1))
 }
+failed_tests=""
 nTest=1
 
 function unit_test {
@@ -33,5 +35,17 @@ function unit_test {
         run_test $program $test
     done
     IFS=$OLD_IFS
+    report
     yellow_printf "Unit test is over\n"
+}
+
+function report {
+    red_printf "Failed test numbers are: "
+    if [ -z "$failed_tests" ]
+    then
+        red_printf "None"
+    else
+        red_printf "$failed_tests"
+    fi
+    printf "\n"
 }
