@@ -1,7 +1,7 @@
 CC = g++
-CFLAGS = -D NDEBUG
+include ../../debugflags
 EXE = sesolver
-SRCS = main.cpp lib/equations/equations.cpp
+SRCS = ../main.cpp ../lib/equations/equations.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXE)
