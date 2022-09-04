@@ -22,11 +22,10 @@ int is_equal(double a, double b);
 void swap(double *a, double *b);
 
 /// Return codes for se_solve() and le_solve():
-enum retcodes_sesolver
+enum retcodes_equations
 {
-INF_ROOTS_SESOLVER = -1, ///< infinite number of roots
-ERR_COEF_SESOLVER  = -2, ///< some coefficients are not finite
-ERR_ROOT_SESOLVER  = -3  ///< bad pointers to roots
+INF_ROOTS_EQUATIONS      = -1, ///< infinite number of roots
+ERR_COEF_EQUATIONS       = -2, ///< some coefficients are not finite
 };
                                                         
 /// @brief Solves square equation
@@ -40,7 +39,6 @@ ERR_ROOT_SESOLVER  = -3  ///< bad pointers to roots
 /// @return number of roots on success,
 /// -1 if there are infinite number of roots
 /// -2 if some given coefficients are not finite numbers
-/// -3 if given pointers to root are NULL or equal
 int se_solve(double a, double b, double c, double *root1, double *root2);
 
 /// @brief Solves linear equation
@@ -52,7 +50,6 @@ int se_solve(double a, double b, double c, double *root1, double *root2);
 /// @return number of roots on success,
 /// -1 if there are infinite number of roots,
 /// -2 if some given coefficients are not finite numbers,
-/// -3 if given pointer to root is NULL
 int le_solve(double a, double b, double *root);
 
 #endif /* EQUATIONS_H */

@@ -2,26 +2,30 @@
 #include <stdio.h>
 
 #include "equations.h"
+#include "../assert/my_assert.h"
 
 int is_equal(double a, double b) {
     return (fabs(a - b) < EPS);
 }
 
 void swap(double *a, double *b) {
+    ASSERT(a != NULL)
+    ASSERT(b != NULL)
+    ASSERT(a != b)
+
     double swap = *a;
     *a = *b;
     *b = swap;
 }
 
 int se_solve(double a, double b, double c, double *root1, double *root2) {
-    if (root1 == NULL ||
-        root2 == NULL ||
-        root1 == root2)
-        return ERR_ROOT_SESOLVER;
+    ASSERT(root1 != NULL)
+    ASSERT(root2 != NULL)
+    ASSERT(root1 != root2)
     if (!std::isfinite(a) ||
         !std::isfinite(b) ||
         !std::isfinite(c))
-        return ERR_COEF_SESOLVER;
+        return ERR_COEF_EQUATIONS;
 
     int nRoots = 0;
     if (is_equal(a, 0)) {
@@ -69,15 +73,14 @@ int se_solve(double a, double b, double c, double *root1, double *root2) {
 }
 
 int le_solve(double a, double b, double* root) {
-    if (root == NULL)
-        return ERR_ROOT_SESOLVER;
+    ASSERT(root != NULL)
     if (!std::isfinite(a) ||
         !std::isfinite(b))
-        return ERR_COEF_SESOLVER;
+        return ERR_COEF_EQUATIONS;
 
     int nRoots = 0;
     if (is_equal(a, 0)) {
-        nRoots = (is_equal(b, 0)) ? INF_ROOTS_SESOLVER : 0;
+        nRoots = (is_equal(b, 0)) ? INF_ROOTS_EQUATIONS : 0;
     } else {
         *root = -b/a;
         nRoots = 1;
