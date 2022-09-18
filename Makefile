@@ -1,16 +1,19 @@
 CC = g++
 CFLAGS = -D NDEBUG
 EXE = sesolver
-SRCS = main.cpp lib/equations/equations.cpp
-OBJS = $(SRCS:.cpp=.o)
+SOURCES = main.cpp
+INCLUDES_DIR = lib
+include $(INCLUDES_DIR)/equations/Makefile
+
+OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(EXE)
 
-$(EXE): $(OBJS)
-	$(CC) -o $(EXE) $(OBJS) $(CFLAGS)
+$(EXE): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
 
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(EXE) $(OBJS)
+	rm -rf $(EXE) $(OBJECTS)

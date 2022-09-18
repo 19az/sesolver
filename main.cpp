@@ -24,7 +24,7 @@ int main(void) {
 
     double root1 = NAN;
     double root2 = NAN;
-    int nRoots = se_solve(a, b, c, &root1, &root2);
+    int nRoots = square_eq_solve(a, b, c, &root1, &root2);
     switch(nRoots) {
         case 0:  printf("Equation has no roots\n");
                  break;
